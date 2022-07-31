@@ -39,7 +39,7 @@ html,body{
 }
 
 
-.messagebox {
+.listAddB{
   height: 200px;
   width: 420px;
   border-style: solid;
@@ -62,7 +62,7 @@ html,body{
   justify-content: center;    
 }
   
-.flex-container {
+.containerB {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -244,14 +244,14 @@ html,body{
   font-family: 'poppins',sans-serif;
 }
   
-#no-item-div {
+#noDiv {
   color: white;
   font-size:30px;
   font-weight: lighter;
   font-family: 'poppins',sans-serif;
 }
   
-.messagebox button {
+.listAddB button {
   margin-top: 20px;
   height: 40px;
   width: 75px;
@@ -271,7 +271,7 @@ html,body{
   margin-bottom: 3vw;
 }
   
-.messagebox input {
+.listAddB input {
   width: 70%;
   text-align: center;
   display: block;
@@ -306,7 +306,6 @@ html,body{
 }
   
 .add-item-modal button {
-  text-transform: uppercase;
   margin-top: 20px;
   height: 40px;
   width: 75px;

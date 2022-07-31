@@ -1,50 +1,41 @@
-let messagebox = document.querySelector(".messagebox");
+let listAddition = document.querySelector(".listAddB");
 let container = document.querySelector(".container");
-let flexContainer = document.querySelector(".flex-container");
-let select = document.querySelector(".select");
+let flexContainer = document.querySelector(".containerB");
+let select = document.querySelector(".selecting");
 let lists = document.querySelector(".lists");
 let inputValue = document.getElementById("name");
 
-let list_add_button = document.querySelector(".add");
-let list_close_button = document.querySelector(".close");
+let list_add_button = document.querySelector(".btn1");
+let list_close_button = document.querySelector(".btn2");
 
 let boxes = [];
 let id = 0;
-
-
-function isEmptyOrNot() {
-  if (flexContainer.innerHTML == "") {
-    document.getElementById("no-item-div").classList.remove("hidden");
-  } else {
-    document.getElementById("no-item-div").classList.add("hidden");
-  }
-}
-isEmptyOrNot();
 
 
 let showlists = () => {
   let box = "";
   boxes.forEach((user) => {
     let list = "";
-    user.lists.forEach((el, i) => {
+    user.lists.forEach((e, i) => {
  
       if (
         document.getElementById(`b-${user.id}-${i}`) !== null &&
-        document.getElementById(`b-${user.id}-${i}`).getAttribute("class") ==
-          null
-      ) {
-        list += `<p id='b-${user.id}-${i}'>${el} <span class='task-done-btn' onclick="taskDone('b-${user.id}-${i}',${user.id})">Mark Done</span></p>`;
-      } else if (
+        document.getElementById(`b-${user.id}-${i}`).getAttribute("class") == null)
+        {
+          list += `<p id='b-${user.id}-${i}'>${e} <span class='task-done-btn' onclick="taskDone('b-${user.id}-${i}',${user.id})">Mark Done</span></p>`;
+        }
+        else if (
         document.getElementById(`b-${user.id}-${i}`) !== null &&
         document
           .getElementById(`b-${user.id}-${i}`)
           .getAttribute("class")
-          .includes("task-done")
-      ) {
-        list += `<p id='b-${user.id}-${i}' class='task-done'>${el}</p>`;
-      } else {
-        list += `<p id='b-${user.id}-${i}'>${el} <span class='task-done-btn' onclick="taskDone('b-${user.id}-${i}',${user.id})">Mark Done</span></p>`;
-      }
+          .includes("task-done"))
+          {
+            list += `<p id='b-${user.id}-${i}' class='task-done'>${e}</p>`;
+          } else
+          {
+            list += `<p id='b-${user.id}-${i}'>${e} <span class='task-done-btn' onclick="taskDone('b-${user.id}-${i}',${user.id})">Mark Done</span></p>`;
+          }
     });
 
     box += `<div class='box'>
@@ -69,14 +60,14 @@ let getSbox = (id) => {
     boxes.forEach((user) => {
       if (user.id == id) {
         let list = "";
-        user.lists.forEach((el, i) => {
+        user.lists.forEach((e, i) => {
           if (
             document.getElementById(`b-${user.id}-${i}`) !== null &&
             document
               .getElementById(`b-${user.id}-${i}`)
               .getAttribute("class") == null
           ) {
-            list += `<p id='b-${user.id}-${i}'>${el} <span class='task-done-btn' onclick="taskDone('b-${user.id}-${i}',${user.id})">Mark Done</span></p>`;
+            list += `<p id='b-${user.id}-${i}'>${e} <span class='task-done-btn' onclick="taskDone('b-${user.id}-${i}',${user.id})">Mark Done</span></p>`;
           } else if (
             document.getElementById(`b-${user.id}-${i}`) !== null &&
             document
@@ -84,49 +75,46 @@ let getSbox = (id) => {
               .getAttribute("class")
               .includes("task-done")
           ) {
-            list += `<p id='b-${user.id}-${i}' class='task-done'>${el}</p>`;
+            list += `<p id='b-${user.id}-${i}' class='task-done'>${e}</p>`;
           } else {
-            list += `<p id='b-${user.id}-${i}'>${el} <span class='task-done-btn' onclick="taskDone('b-${user.id}-${i}',${user.id})">Mark Done</span></p>`;
+            list += `<p id='b-${user.id}-${i}'>${e} <span class='task-done-btn' onclick="taskDone('b-${user.id}-${i}',${user.id})">Mark Done</span></p>`;
           }
         });
 
         box += `
         <div class="page-2-btn">
           <div id="b-btn" onclick='goBack()'>
-            <i class="fas fa-chevron-circle-left fa-2x"></i
-            ><span class="w">Back</span>
+            <i class="fas fa-chevron-circle-left fa-2x"></i><span class="w">Back</span>
           </div>
           <div class="heading">${user.title}</div>
           <i class="fa-solid fa-circle-plus" onclick='addBoxes()'></i>
         </div>
         <div class='sbox'>
-          <h2 class="box-heading" onclick='getThis(${user.id})'>${user.title}</h2>
-          <hr/>
-          <div class="lists">
-              ${list}
-          </div>
+          <p class="box-heading" onclick='getThis(${user.id})'>${user.title}</p><hr/>
+          <div class="lists">${list}</div>
           <i id="s_del_list" onclick="delBox(${user.id})" class="fas fa-trash"></i>
           <i id="s_add_list" onclick="addList(${user.id})" class="fa-solid fa-circle-plus"></i>
       </div>`;
       }
     });
-  } else {
+  }
+  else
+  {
     box = "";
   }
-
   select.innerHTML = box;
 };
 
 
-let addlists = () => {
+let addListItems = () => {
   id++;
-  messagebox.classList.remove("hidden");
+  listAddition.classList.remove("hidden");
   container.classList.add("blur");
   select.classList.add("blur");
 };
 
 list_add_button.addEventListener("click", () => {
-  messagebox.classList.add("popout");
+  listAddition.classList.add("popout");
   let newList = inputValue.value;
   if (newList) {
     boxes.push({
@@ -137,13 +125,13 @@ list_add_button.addEventListener("click", () => {
 
     setTimeout(() => {
       showlists();
-      isEmptyOrNot();
+      hideCont();
     }, 350);
   }
   inputValue.value = "";
   setTimeout(() => {
-    messagebox.classList.add("hidden");
-    messagebox.classList.remove("popout");
+    listAddition.classList.add("hidden");
+    listAddition.classList.remove("popout");
     select.classList.add("d-none");
     container.classList.remove("d-none");
     container.classList.remove("blur");
@@ -152,15 +140,24 @@ list_add_button.addEventListener("click", () => {
 });
 
 list_close_button.addEventListener("click", () => {
-  messagebox.classList.add("popout");
+  listAddition.classList.add("popout");
   inputValue.value = "";
   setTimeout(() => {
-    messagebox.classList.add("hidden");
-    messagebox.classList.remove("popout");
+    listAddition.classList.add("hidden");
+    listAddition.classList.remove("popout");
     container.classList.remove("blur");
     select.classList.remove("blur");
   }, 300);
 });
+
+function hideCont() {
+  if (flexContainer.innerHTML == "") {
+    document.getElementById("noDiv").classList.remove("hidden");
+  } else {
+    document.getElementById("noDiv").classList.add("hidden");
+  }
+}
+hideCont();
 
 
 function delBox(id) {
@@ -174,7 +171,7 @@ function delBox(id) {
 
 
   showlists();
-  isEmptyOrNot();
+  hideCont();
 }
 
 
@@ -184,12 +181,11 @@ function addList(itemId) {
 
   let itemModal = document.createElement("div");
   itemModal.className = "add-item-modal";
-  itemModal.innerHTML = `
-  <h2 id="l2">Add New Item</h2>
+  itemModal.innerHTML = `<p id="l2">Add New Item</p>
   <input type="text" id="item"/>
   <div class="btn">
-    <button class="item-add-btn">add</button>
-    <button class="item-close-btn">close</button>
+    <button class="item-add-btn">Add</button>
+    <button class="item-close-btn">Close</button>
   </div>`;
 
   let body = document.body;

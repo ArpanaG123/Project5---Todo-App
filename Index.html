@@ -9,26 +9,26 @@
     <script src="https://kit.fontawesome.com/941c526257.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="messagebox ">
-        <h2 id="list1">Add New List</h2>
+    <div class="listAddB ">
+        <p id="list1">Add New List</p>
         <input type="text"  id="name">
         <div class="modal-btns">
-            <button class="add">Add</button>
-            <button class="close">Close</button>
+            <button class="btn1">Add</button>
+            <button class="btn2">Close</button>
         </div>
     </div>
     <div class="container">
         <div class="task-header">
             <div><span class = "lis1">Tasks</span><span class = "lis2">List</span></div>
-            <p onclick="addlists()">
+            <p onclick="addListItems()">
                 <i class="fa-solid fa-circle-plus"></i>
                 <span id="addtask">Add Item</span>
             </p>
         </div>
-        <div id="no-item-div">No Items in the Todo Lists</div>
-        <div class="flex-container"></div>
+        <div id="noDiv">No Items in the Todo Lists</div>
+        <div class="containerB"></div>
     </div>
-    <div class="select d-none"></div>
+    <div class="selecting d-none"></div>
     
     <script src="./Index.js"></script>
 </body>
